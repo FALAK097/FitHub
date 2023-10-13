@@ -30,8 +30,11 @@ const Landing = () => {
         Unlock Your Potential, Unleash Your Power
       </Text>
       <View style={styles.mainItem}>
-        <Pressable onPress={() => navigation.navigate('DETAILS')} />
-        <Text style={[styles.getStarted, styles.loginTypo]}>GET STARTED</Text>
+        <Pressable
+          style={({pressed}) => [{opacity: pressed ? 0.5 : 1.0}]}
+          onPress={() => navigation.navigate('Details')}>
+          <Text style={[styles.getStarted, styles.loginTypo]}>GET STARTED</Text>
+        </Pressable>
       </View>
       <Text style={styles.fithub}>FitHUB</Text>
       <Text style={[styles.aiEnhancedSmart, styles.aiEnhancedSmartTypo]}>
@@ -43,8 +46,11 @@ const Landing = () => {
         source={require('../assets/vector.png')}
       />
       <Pressable
-        style={styles.alreadyHadAccountContainer}
-        onPress={() => navigation.navigate('LOGIN')}>
+        style={({pressed}) => [
+          styles.alreadyHadAccountContainer,
+          {opacity: pressed ? 0.5 : 1.0},
+        ]}
+        onPress={() => navigation.navigate('Login')}>
         <Text style={styles.text}>
           <Text style={styles.alreadyHadAccount}>Already had Account? </Text>
           <Text style={styles.loginTypo}>LOGIN</Text>
