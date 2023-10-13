@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {StyleSheet, View, Pressable, Text, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Image,
+  TextInput,
+  Text,
+} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation, ParamListBase} from '@react-navigation/native';
 import {Color, Border, FontFamily, FontSize} from '../GlobalStyles';
@@ -8,36 +15,58 @@ const Login = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={[styles.login, styles.iconLayout]}>
+    <View style={styles.container}>
+      <Text style={styles.fithub}>FitHub</Text>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>Enter Email</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="johndoe@gmail.com"
+          keyboardType="email-address"
+          placeholderTextColor={Color.colorDimgray}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>Password</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Enter Password"
+          placeholderTextColor={Color.colorDimgray}
+          secureTextEntry
+        />
+      </View>
+
       <Pressable
-        style={styles.loginChild}
-        onPress={() => navigation.navigate('Home')}
-      />
-      <Text style={[styles.login1, styles.login1Typo]}>LOGIN</Text>
-      <View style={[styles.loginItem, styles.loginLayout]} />
-      <Text style={[styles.enterEmailOr, styles.enterTypo]}>
-        Enter Email or Phone
-      </Text>
-      <Text style={[styles.emailOrPhone, styles.passwordTypo]}>
-        EMAIL OR PHONE
-      </Text>
-      <Text style={[styles.fithub, styles.login1Typo]}>FitHub</Text>
-      <View style={[styles.loginInner, styles.loginLayout]} />
-      <Text style={[styles.password, styles.passwordTypo]}>PASSWORD</Text>
-      <Text style={[styles.enterPass, styles.enterTypo]}>Enter Password</Text>
-      <Pressable
-        onPress={() => navigation.navigate('Details')}
-        style={({pressed}) => [{opacity: pressed ? 0.5 : 1.0}]}>
-        <Text style={styles.forgetPassword}>Forgot Password?</Text>
+        style={styles.loginButton}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.loginButtonText}>LOGIN</Text>
       </Pressable>
+
       <Pressable
-        style={({pressed}) => [
-          styles.evaarrowbackfill0,
-          {opacity: pressed ? 0.5 : 1.0},
-        ]}
+        style={styles.forgotPassword}
+        onPress={() => navigation.navigate('Details')}>
+        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+      </Pressable>
+
+      <View style={styles.iconsContainer}>
+        <Image
+          style={styles.flatColorIconsgoogle}
+          resizeMode="cover"
+          source={require('../assets/flatcoloriconsgoogle.png')}
+        />
+        <Image
+          style={styles.logosgoogleGmailIcon}
+          resizeMode="cover"
+          source={require('../assets/logosgooglegmail.png')}
+        />
+      </View>
+
+      <Pressable
+        style={styles.backButton}
         onPress={() => navigation.navigate('Landing')}>
         <Image
-          style={[styles.icon, styles.iconLayout]}
+          style={styles.backButtonImage}
           resizeMode="cover"
           source={require('../assets/evaarrowbackfill0.png')}
         />
@@ -47,113 +76,85 @@ const Login = () => {
 };
 
 const styles = StyleSheet.create({
-  iconLayout: {
-    overflow: 'hidden',
-    width: '100%',
-  },
-  login1Typo: {
-    textAlign: 'left',
-    fontWeight: '700',
-    position: 'absolute',
-  },
-  loginLayout: {
-    height: 50,
-    backgroundColor: Color.colorLightgray,
-    borderRadius: Border.br_3xl_5,
-    width: 375,
-    left: 10,
-    position: 'absolute',
-  },
-  enterTypo: {
-    width: 237,
-    color: Color.colorDimgray,
-    left: 30,
-    fontFamily: FontFamily.interRegular,
-    fontSize: FontSize.size_mini,
-    textAlign: 'left',
-    position: 'absolute',
-  },
-  passwordTypo: {
-    fontSize: FontSize.size_lg,
-    left: 20,
-    textAlign: 'left',
-    color: Color.colorWhite,
-    fontFamily: FontFamily.interBold,
-    fontWeight: '900',
-    position: 'absolute',
-  },
-  loginChild: {
-    top: 575,
-    borderRadius: Border.br_xl,
-    backgroundColor: Color.colorOlive,
-    height: 67,
-    width: 375,
-    left: 10,
-    position: 'absolute',
-  },
-  login1: {
-    top: 595,
-    left: 155,
-    fontSize: FontSize.size_3xl,
-    color: Color.colorWhite,
-    fontFamily: FontFamily.interBold,
-    textAlign: 'left',
-    fontWeight: '700',
-  },
-  loginItem: {
-    top: 382,
-  },
-  enterEmailOr: {
-    top: 396,
-  },
-  emailOrPhone: {
-    top: 349,
+  container: {
+    flex: 1,
+    backgroundColor: Color.colorBlack,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   fithub: {
-    top: 100,
-    left: 98,
     fontSize: 51,
     fontFamily: FontFamily.inknutAntiquaBold,
     color: Color.colorYellow,
-    textAlign: 'left',
+    marginBottom: 20,
+  },
+  inputContainer: {
+    width: '80%',
+    marginBottom: 20,
+  },
+  inputLabel: {
+    fontSize: FontSize.size_lg,
+    color: Color.colorWhite,
+    fontFamily: FontFamily.interRegular,
+    marginBottom: 5,
+    alignSelf: 'flex-start',
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: Color.colorLightgray,
+    borderRadius: Border.br_3xl_5,
+    width: '100%',
+    height: 45,
+    paddingLeft: 10,
+    color: Color.colorDimgray,
+    fontSize: FontSize.size_mini,
+    fontFamily: FontFamily.interRegular,
+  },
+  loginButton: {
+    backgroundColor: Color.colorOlive,
+    width: '80%',
+    height: 50,
+    borderRadius: Border.br_xl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  loginButtonText: {
+    fontSize: FontSize.size_6xl,
+    color: Color.colorWhite,
+    fontFamily: FontFamily.interBold,
     fontWeight: '700',
   },
-  loginInner: {
-    top: 495,
+  forgotPassword: {
+    marginTop: 15,
   },
-  password: {
-    top: 462,
-  },
-  enterPass: {
-    top: 510,
-  },
-  forgetPassword: {
-    top: 677,
-    left: 140,
-    color: Color.colorGainsboro_100,
-    fontFamily: FontFamily.interRegular,
+  forgotPasswordText: {
     fontSize: FontSize.size_lg,
-    textAlign: 'left',
+    color: Color.colorWhite,
+    fontFamily: FontFamily.interRegular,
+  },
+  backButton: {
     position: 'absolute',
+    top: 20,
+    left: 10,
   },
-  icon: {
-    height: '100%',
-    maxWidth: '100%',
-    maxHeight: '100%',
+  backButtonImage: {
+    width: 35,
+    height: 30,
   },
-  evaarrowbackfill0: {
-    left: '3.72%',
-    top: '7.62%',
-    right: '88.84%',
-    bottom: '89.81%',
-    width: '7.44%',
-    height: '2.58%',
-    position: 'absolute',
+  iconsContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
   },
-  login: {
-    backgroundColor: Color.colorBlack,
-    flex: 1,
-    height: 932,
+  logosgoogleGmailIcon: {
+    width: 24,
+    height: 24,
+    marginLeft: 15,
+  },
+  flatColorIconsgoogle: {
+    width: 30,
+    height: 30,
+    marginLeft: 10,
   },
 });
 

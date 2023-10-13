@@ -14,18 +14,6 @@ const Landing = () => {
         resizeMode="cover"
         source={require('../assets/pxfuel-1.png')}
       />
-      <View style={styles.iconsContainer}>
-        <Image
-          style={styles.flatColorIconsgoogle}
-          resizeMode="cover"
-          source={require('../assets/flatcoloriconsgoogle.png')}
-        />
-        <Image
-          style={styles.logosgoogleGmailIcon}
-          resizeMode="cover"
-          source={require('../assets/logosgooglegmail.png')}
-        />
-      </View>
       <Text style={[styles.unlockYourPotential, styles.loginTypo]}>
         Unlock Your Potential, Unleash Your Power
       </Text>
@@ -36,15 +24,10 @@ const Landing = () => {
           <Text style={[styles.getStarted, styles.loginTypo]}>GET STARTED</Text>
         </Pressable>
       </View>
-      <Text style={styles.fithub}>FitHUB</Text>
+      <Text style={styles.fithub}>FitHub</Text>
       <Text style={[styles.aiEnhancedSmart, styles.aiEnhancedSmartTypo]}>
         AI enhanced smart vision for fitness optimization
       </Text>
-      <Image
-        style={styles.vectorIcon}
-        resizeMode="cover"
-        source={require('../assets/vector.png')}
-      />
       <Pressable
         style={({pressed}) => [
           styles.alreadyHadAccountContainer,
@@ -52,7 +35,7 @@ const Landing = () => {
         ]}
         onPress={() => navigation.navigate('Login')}>
         <Text style={styles.text}>
-          <Text style={styles.alreadyHadAccount}>Already had Account? </Text>
+          <Text style={styles.alreadyHadAccount}>Already a User? </Text>
           <Text style={styles.loginTypo}>LOGIN</Text>
         </Text>
       </Pressable>
@@ -69,26 +52,9 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_lg,
     position: 'absolute',
   },
-  logosgoogleGmailIcon: {
-    width: 24,
-    height: 24,
-    position: 'absolute',
-  },
-  flatColorIconsgoogle: {
-    width: 24,
-    left: 50,
-    height: 24,
-    position: 'absolute',
-  },
-  iconsContainer: {
-    flexDirection: 'row',
-    position: 'absolute',
-    top: 710,
-    left: 140,
-  },
   imgpxfuel1Icon: {
     width: 400,
-    height: 1000,
+    height: '100%',
   },
   unlockYourPotential: {
     color: Color.colorWhite,
@@ -102,22 +68,22 @@ const styles = StyleSheet.create({
     top: 595,
     left: 15,
     borderRadius: Border.br_xl,
-    backgroundColor: Color.colorYellow,
+    backgroundColor: Color.colorOlive,
     width: 375,
     height: 67,
     position: 'absolute',
   },
   getStarted: {
     fontSize: 21,
-    color: Color.colorBlack,
+    color: Color.colorWhite,
     textAlign: 'left',
     position: 'absolute',
     left: 120,
-    top: 22,
+    top: 20,
   },
   fithub: {
     top: 470,
-    left: 91,
+    left: 110,
     fontSize: 55,
     fontFamily: FontFamily.interBold,
     color: Color.colorYellow,
@@ -133,25 +99,16 @@ const styles = StyleSheet.create({
     width: 237,
     fontFamily: FontFamily.interRegular,
   },
-  vectorIcon: {
-    height: '1.93%',
-    width: '4.19%',
-    top: '94.48%',
-    right: '34.86%',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    position: 'absolute',
-  },
   alreadyHadAccount: {
     fontFamily: FontFamily.interRegular,
   },
   text: {
     fontSize: FontSize.size_base,
-    color: Color.colorGainsboro_100,
+    color: Color.colorWhite,
     textAlign: 'left',
   },
   alreadyHadAccountContainer: {
-    left: 102,
+    left: 140,
     top: 680,
     position: 'absolute',
   },
