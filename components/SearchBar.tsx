@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 3,
     borderColor: Color.colorDimgray,
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 5,
-    top: 30,
+    top: 10,
   },
   searchIcon: {
     width: 25,

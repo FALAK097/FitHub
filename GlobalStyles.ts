@@ -25,7 +25,7 @@ export const Color = {
   colorWhite: '#fff',
   colorGray: '#020202',
   colorDarkslategray: 'rgba(64, 64, 64, 0.84)',
-  colorDimgray: '#545454',
+  colorDimgray: '#545490',
   colorLightgray: 'rgba(210, 210, 210, 0.77)',
   colorOlive: '#7c8700',
 };
