@@ -21,9 +21,6 @@ const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({route}) => {
     text: '',
   };
 
-  const isUpperBodyWorkout = itemId === '1' || itemId === '3'; // Check if it's an upper body workout
-  const isLowerBodyWorkout = itemId === '2' || itemId === '4'; // Check if it's a lower body workout
-
   return (
     <CommonLayout navigation={navigation}>
       <View style={styles.container}>
@@ -41,66 +38,19 @@ const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({route}) => {
             {/* Add more workout details here */}
           </View>
         </View>
-        {isUpperBodyWorkout && (
-          <View style={styles.section}>
-            <Image
-              source={require('../assets/bicep.png')}
-              style={styles.sectionImage}
-            />
-            <View style={styles.sectionContent}>
-              <Text style={styles.sectionTitle}>Biceps Curls</Text>
-              <Text style={styles.sectionDescription}>
-                Biceps curls with dumbbells or resistance bands isolate the
-                biceps, helping you achieve well-deserved arms.
-              </Text>
-            </View>
+        <View style={styles.section}>
+          <Image
+            source={require('../assets/bicep.png')}
+            style={styles.sectionImage}
+          />
+          <View style={styles.sectionContent}>
+            <Text style={styles.sectionTitle}>Biceps Curls</Text>
+            <Text style={styles.sectionDescription}>
+              Biceps curls with dumbbells or resistance band isolate the biceps,
+              helping you achieve well deserved arms.
+            </Text>
           </View>
-        )}
-        {isUpperBodyWorkout && (
-          <View style={styles.section}>
-            <Image
-              source={require('../assets/tricep.png')}
-              style={styles.sectionImage}
-            />
-            <View style={styles.sectionContent}>
-              <Text style={styles.sectionTitle}>Tricep Dips</Text>
-              <Text style={styles.sectionDescription}>
-                Tricep dips are great for building strength and definition in
-                your triceps, the muscles in the back of your upper arm.
-              </Text>
-            </View>
-          </View>
-        )}
-        {isLowerBodyWorkout && (
-          <View style={styles.section}>
-            <Image
-              source={require('../assets/squats.png')}
-              style={styles.sectionImage}
-            />
-            <View style={styles.sectionContent}>
-              <Text style={styles.sectionTitle}>Squats</Text>
-              <Text style={styles.sectionDescription}>
-                Squats are a compound exercise that works the muscles in your
-                thighs, hips, and buttocks.
-              </Text>
-            </View>
-          </View>
-        )}
-        {isLowerBodyWorkout && (
-          <View style={styles.section}>
-            <Image
-              source={require('../assets/deadlifts.png')}
-              style={styles.sectionImage}
-            />
-            <View style={styles.sectionContent}>
-              <Text style={styles.sectionTitle}>Deadlifts</Text>
-              <Text style={styles.sectionDescription}>
-                Deadlifts are excellent for targeting the muscles in your lower
-                back, glutes, and hamstrings.
-              </Text>
-            </View>
-          </View>
-        )}
+        </View>
       </View>
     </CommonLayout>
   );
