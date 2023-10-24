@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Pressable,
@@ -33,13 +33,23 @@ const footerItems: FooterItem[] = [
 ];
 
 const Footer: React.FC<{navigation: any}> = ({navigation}) => {
+  const [activeScreen, setActiveScreen] = useState('Home');
+
   return (
     <View style={styles.footer}>
       {footerItems.map((item, index) => (
         <Pressable
           key={index}
-          style={styles.footerIcon}
-          onPress={() => navigation.navigate(item.navigateTo)}>
+          style={[
+            styles.footerIcon,
+            activeScreen === item.navigateTo && styles.activeIcon,
+          ]}
+          onPress={() => {
+            console.log('Navigating to:', item.navigateTo);
+            navigation.navigate(item.navigateTo);
+            setActiveScreen(item.navigateTo);
+            console.log('Active screen:', activeScreen);
+          }}>
           <Image style={styles.icon} resizeMode="cover" source={item.icon} />
         </Pressable>
       ))}
@@ -66,6 +76,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     overflow: 'hidden',
+  },
+  activeIcon: {
+    backgroundColor: '#333333ba',
+    borderRadius: 50,
   },
 });
 

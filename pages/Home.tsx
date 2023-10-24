@@ -5,7 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation, ParamListBase} from '@react-navigation/native';
 import {Color} from '../GlobalStyles';
 
-import Footer from '../components/Footer';
+import CommonLayout from '../components/CommonLayout';
 import ProfileInfo from '../components/ProfileInfo';
 import SearchBar from '../components/SearchBar';
 import WorkoutPlan from '../components/WorkoutPlan';
@@ -15,28 +15,28 @@ const HOME = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={styles.home}>
-      <LinearGradient
-        style={styles.homeChild}
-        locations={[0, 1]}
-        colors={['rgba(0, 0, 0, 0)', '#000']}
-        useAngle={true}
-        angle={180}
-      />
-
-      <ScrollView>
-        <ProfileInfo />
-        <SearchBar
-          placeholder="Search anything ..."
-          onSearch={(text: any) => {
-            console.log('Search text:', text);
-          }}
+    <CommonLayout navigation={navigation}>
+      <View style={styles.home}>
+        <LinearGradient
+          style={styles.homeChild}
+          locations={[0, 1]}
+          colors={['rgba(0, 0, 0, 0)', '#000']}
+          useAngle={true}
+          angle={180}
         />
-        <WorkoutPlan />
-        <DietPlan />
-      </ScrollView>
-      <Footer navigation={navigation} />
-    </View>
+        <ScrollView>
+          <ProfileInfo />
+          <SearchBar
+            placeholder="Search anything ..."
+            onSearch={(text: any) => {
+              console.log('Search text:', text);
+            }}
+          />
+          <WorkoutPlan />
+          <DietPlan />
+        </ScrollView>
+      </View>
+    </CommonLayout>
   );
 };
 
