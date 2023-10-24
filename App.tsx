@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import SmartCamera from './pages/SmartCamera';
 import Community from './pages/Community';
 import UserProfile from './pages/UserProfile';
+import WorkoutDetails from './pages/WorkoutDetails';
+// import WorkoutPlan from './components/WorkoutPlan';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +53,16 @@ const App = () => {
           component={UserProfile}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="WorkoutDetails"
+          component={WorkoutDetails}
+          options={{headerShown: false}}
+        />
+        {/* <Stack.Screen
+          name="WorkoutPlan"
+          component={WorkoutPlan}
+          options={{headerShown: false}}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -44,6 +44,8 @@ const Footer: React.FC<{navigation: any}> = ({navigation}) => {
             styles.footerIcon,
             activeScreen === item.navigateTo && styles.activeIcon,
           ]}
+          // To apply active footer styling --->
+          // activeScreen === item.navigateTo && styles.activeIcon,
           onPress={() => {
             console.log('Navigating to:', item.navigateTo);
             navigation.navigate(item.navigateTo);
@@ -78,7 +80,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   activeIcon: {
-    backgroundColor: '#333333ba',
     borderRadius: 50,
   },
 });
