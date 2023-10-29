@@ -36,7 +36,7 @@ const WorkoutPlan = () => {
 
   // Function to navigate to a detailed page based on the ID
   const navigateToDetailPage = (itemId: string) => {
-    navigation.navigate('WorkoutDetails', { itemId });
+    navigation.navigate('WorkoutDetails', {itemId});
   };
 
   return (
@@ -46,8 +46,8 @@ const WorkoutPlan = () => {
         data={workoutDetailsData}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
           <Pressable onPress={() => navigateToDetailPage(item.id)}>
             <View style={styles.card}>
               <Image source={item.image} style={styles.image} />
