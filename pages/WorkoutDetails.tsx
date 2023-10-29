@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { ParamListBase } from '@react-navigation/routers';
 import { getWorkoutDetailsById } from '../utils/WorkoutUtils';
@@ -23,7 +23,7 @@ const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({ route }) => {
 
   return (
     <CommonLayout navigation={navigation}>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Image source={workoutDetail.image} style={styles.backgroundImage} />
         <View style={styles.infoContainer}>
           <Text style={styles.emoji}>🔥</Text>
@@ -65,7 +65,7 @@ const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({ route }) => {
             </Text>
           </View>
         </View>
-      </ScrollView>
+      </View>
     </CommonLayout>
   );
 };
