@@ -6,79 +6,91 @@ import {
   Image,
   TextInput,
   Text,
+  ImageBackground, // Import ImageBackground
 } from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {useNavigation, ParamListBase} from '@react-navigation/native';
-import {Color, Border, FontFamily, FontSize} from '../GlobalStyles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation, ParamListBase } from '@react-navigation/native';
+import { Color, Border, FontFamily, FontSize } from '../GlobalStyles';
 
 const Login = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.fithub}>FitHub</Text>
+    <ImageBackground
+      source={require('../assets/pxfuel-1-1.png')} // Replace with the path to your background image
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <Text style={styles.fithub}>FitHub</Text>
 
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Enter Email</Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder="johndoe@gmail.com"
-          keyboardType="email-address"
-          placeholderTextColor={Color.colorDimgray}
-        />
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Enter Email</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="johndoe@gmail.com"
+            keyboardType="email-address"
+            placeholderTextColor={Color.colorDimgray}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Password</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Enter Password"
+            placeholderTextColor={Color.colorDimgray}
+            secureTextEntry
+          />
+        </View>
+
+        <Pressable
+          style={styles.loginButton}
+          onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.loginButtonText}>LOGIN</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.forgotPassword}
+          onPress={() => navigation.navigate('Details')}>
+          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+        </Pressable>
+
+        <View style={styles.iconsContainer}>
+          <Image
+            style={styles.flatColorIconsgoogle}
+            resizeMode="cover"
+            source={require('../assets/flatcoloriconsgoogle.png')}
+          />
+          <Image
+            style={styles.logosgoogleGmailIcon}
+            resizeMode="cover"
+            source={require('../assets/logosgooglegmail.png')}
+          />
+        </View>
+
+        <Pressable
+          style={styles.backButton}
+          onPress={() => navigation.navigate('Landing')}>
+          <Image
+            style={styles.backButtonImage}
+            resizeMode="cover"
+            source={require('../assets/evaarrowbackfill0.png')}
+          />
+        </Pressable>
       </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Password</Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Enter Password"
-          placeholderTextColor={Color.colorDimgray}
-          secureTextEntry
-        />
-      </View>
-
-      <Pressable
-        style={styles.loginButton}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.loginButtonText}>LOGIN</Text>
-      </Pressable>
-
-      <Pressable
-        style={styles.forgotPassword}
-        onPress={() => navigation.navigate('Details')}>
-        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-      </Pressable>
-
-      <View style={styles.iconsContainer}>
-        <Image
-          style={styles.flatColorIconsgoogle}
-          resizeMode="cover"
-          source={require('../assets/flatcoloriconsgoogle.png')}
-        />
-        <Image
-          style={styles.logosgoogleGmailIcon}
-          resizeMode="cover"
-          source={require('../assets/logosgooglegmail.png')}
-        />
-      </View>
-
-      <Pressable
-        style={styles.backButton}
-        onPress={() => navigation.navigate('Landing')}>
-        <Image
-          style={styles.backButtonImage}
-          resizeMode="cover"
-          source={require('../assets/evaarrowbackfill0.png')}
-        />
-      </Pressable>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover', // You can adjust this property based on your image aspect ratio
+  },
   container: {
     flex: 1,
-    backgroundColor: Color.colorBlack,
+    backgroundColor: 'transparent', // Set to 'transparent' to see the background image
     alignItems: 'center',
     justifyContent: 'center',
   },

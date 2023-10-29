@@ -1,77 +1,75 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, Pressable } from 'react-native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-interface DietPlanProps {
-  style?: any;
-}
+// Sample workout details data
+const workoutDetailsData = [
+  {
+    id: '1',
+    title: 'Fat Loss',
+    image: require('../assets/rectangle-10.png'),
+    text: 'Welcome to our Recommended Arms Workouts section, curated especially for you to achieve your fitness goals effectively and efficiently.',
+  },
+  {
+    id: '2',
+    title: 'Muscle Gain',
+    image: require('../assets/rectangle-11.png'),
+    text: 'Welcome to our Recommended Legs Workouts section, designed to help you build strong, sculpted legs and enhance your lower body strength and endurance.',
+  },
+  {
+    id: '3',
+    title: 'Protein Goal',
+    image: require('../assets/rectangle-10.png'),
+    text: 'Welcome to our Recommended Chest & Back Workouts section, curated especially for you to achieve your fitness goals effectively and efficiently.',
+  },
+  {
+    id: '4',
+    title: 'Gain Weight',
+    image: require('../assets/rectangle-11.png'),
+    text: 'Welcome to our Recommended Lower Body Workouts section, designed to help you build strong, sculpted legs and enhance your lower body strength and endurance.',
+  },
+];
 
-const DietPlan: React.FC<DietPlanProps> = ({style}) => {
-  // Sample data for images and text
-  const data = [
-    {
-      id: '1',
-      image: require('../assets/rectangle-10.png'),
-      text: 'Fat Loss',
-    },
-    {
-      id: '2',
-      image: require('../assets/rectangle-11.png'),
-      text: 'Weight Gain',
-    },
-    {
-      id: '3',
-      image: require('../assets/rectangle-10.png'),
-      text: 'Muscle Gain',
-    },
-    {
-      id: '4',
-      image: require('../assets/rectangle-11.png'),
-      text: 'Calorie Deficit',
-    },
-    {
-      id: '5',
-      image: require('../assets/rectangle-10.png'),
-      text: 'Calorie Surplus',
-    },
-  ];
+const WorkoutPlan = () => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
+  // Function to navigate to a detailed page based on the ID
+  const navigateToDetailPage = (itemId: string) => {
+    navigation.navigate('WorkoutDetails', { itemId });
+  };
 
   return (
-    <ScrollView style={[styles.container, style]}>
+    <View style={styles.container}>
       <Text style={styles.heading}>Recommended Diet Plan</Text>
       <FlatList
-        data={data}
+        data={workoutDetailsData}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <View style={styles.card}>
-            <Image source={item.image} style={styles.image} />
-            <View style={styles.textOverlay}>
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Pressable onPress={() => navigateToDetailPage(item.id)}>
+            <View style={styles.card}>
+              <Image source={item.image} style={styles.image} />
+              <Text style={styles.cardTitle}>{item.title}</Text>
               <Text style={styles.cardText}>{item.text}</Text>
             </View>
-          </View>
+          </Pressable>
         )}
       />
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     flex: 1,
-    paddingTop: 0,
     padding: 10,
     backgroundColor: '#000',
   },
   heading: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 16,
     color: '#fff',
@@ -80,27 +78,23 @@ const styles = StyleSheet.create({
     width: 375,
     marginRight: 16,
     padding: 8,
-    overflow: 'hidden',
-    position: 'relative',
+    height: 500,
   },
   image: {
     width: '100%',
     height: 200,
   },
-  textOverlay: {
-    position: 'absolute',
-    top: '40%',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: 10,
+  cardTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginTop: 20,
   },
   cardText: {
-    fontSize: 24,
-    color: '#30ff07',
+    marginTop: 8,
+    fontSize: 18,
+    color: '#FFFFF7',
   },
 });
 
-export default DietPlan;
+export default WorkoutPlan;
