@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
-import {RouteProp} from '@react-navigation/native';
-import {ParamListBase} from '@react-navigation/routers';
-import {getWorkoutDetailsById} from '../utils/WorkoutUtils';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { ParamListBase } from '@react-navigation/routers';
+import { getWorkoutDetailsById } from '../utils/WorkoutUtils';
 import CommonLayout from '../components/CommonLayout';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 type WorkoutDetailsRouteProp = RouteProp<ParamListBase, 'WorkoutDetails'>;
 
@@ -12,8 +12,8 @@ interface WorkoutDetailsProps {
   route: WorkoutDetailsRouteProp;
 }
 
-const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({route}) => {
-  const {itemId} = route.params as {itemId: string};
+const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({ route }) => {
+  const { itemId } = route.params as { itemId: string };
   const navigation = useNavigation();
   const workoutDetail = getWorkoutDetailsById(itemId) ?? {
     id: '',
@@ -23,7 +23,7 @@ const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({route}) => {
 
   return (
     <CommonLayout navigation={navigation}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image source={workoutDetail.image} style={styles.backgroundImage} />
         <View style={styles.infoContainer}>
           <Text style={styles.emoji}>🔥</Text>
@@ -47,11 +47,25 @@ const WorkoutDetails: React.FC<WorkoutDetailsProps> = ({route}) => {
             <Text style={styles.sectionTitle}>Biceps Curls</Text>
             <Text style={styles.sectionDescription}>
               Biceps curls with dumbbells or resistance band isolate the biceps,
-              helping you achieve well deserved arms.
+              helping you achieve well-deserved arms.
             </Text>
           </View>
         </View>
-      </View>
+
+        <View style={styles.section}>
+          <Image
+            source={require('../assets/bicep.png')}
+            style={styles.sectionImage}
+          />
+          <View style={styles.sectionContent}>
+            <Text style={styles.sectionTitle}>Biceps Curls</Text>
+            <Text style={styles.sectionDescription}>
+              Biceps curls with dumbbells or resistance band isolate the biceps,
+              helping you achieve well-deserved arms.
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
     </CommonLayout>
   );
 };

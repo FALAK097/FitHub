@@ -68,6 +68,7 @@ const SmartCamera = () => {
     ImagePicker.openPicker({
       width: 400,
       height: 400,
+      marginTop: 2,
       cropping: true,
       mediaType: 'photo',
     })
@@ -92,7 +93,7 @@ const SmartCamera = () => {
 
       try {
         const response = await axios.post(
-          'http://192.168.0.103:5000/classify',
+          'http://10.2.0.2:5000/classify',
           formData,
           {
             headers: {

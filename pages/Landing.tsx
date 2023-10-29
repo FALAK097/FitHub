@@ -24,7 +24,7 @@ const Landing = () => {
           <Text style={[styles.getStarted, styles.loginTypo]}>GET STARTED</Text>
         </Pressable>
       </View>
-      <Text style={styles.fithub}>FitHub</Text>
+      <Text style={styles.fithub}>FITHUB</Text>
       <Text style={[styles.aiEnhancedSmart, styles.aiEnhancedSmartTypo]}>
         AI enhanced smart vision for fitness optimization
       </Text>
@@ -36,7 +36,7 @@ const Landing = () => {
         onPress={() => navigation.navigate('Login')}>
         <Text style={styles.text}>
           <Text style={styles.alreadyHadAccount}>Already a User? </Text>
-          <Text style={styles.loginTypo}>LOGIN</Text>
+          <Text style={[styles.loginTypo, styles.loginBold]}>LOGIN</Text>
         </Text>
       </Pressable>
     </View>
@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
   aiEnhancedSmartTypo: {
     fontSize: FontSize.size_lg,
     position: 'absolute',
+  },
+  loginBold: {
+    fontWeight: 'bold',  // Make LOGIN bold
+    color: Color.colorYellow, // Change color to fithub color
   },
   imgpxfuel1Icon: {
     width: 400,
@@ -69,32 +73,33 @@ const styles = StyleSheet.create({
     left: 15,
     borderRadius: Border.br_xl,
     backgroundColor: Color.colorOlive,
-    width: 375,
+    width: 330,
     height: 67,
     position: 'absolute',
   },
   getStarted: {
     fontSize: 21,
+    fontWeight: 'bold',
     color: Color.colorWhite,
-    textAlign: 'left',
+    textAlign: 'center',
     position: 'absolute',
-    left: 120,
+    left: 110,
     top: 20,
   },
   fithub: {
     top: 470,
-    left: 110,
+    left: 100,
     fontSize: 55,
     fontFamily: FontFamily.interBold,
     color: Color.colorYellow,
     textAlign: 'left',
-    fontWeight: '700',
+    fontWeight: '900',
     position: 'absolute',
   },
   aiEnhancedSmart: {
     top: 414,
-    left: 94,
-    color: Color.colorGainsboro_200,
+    left: 74,
+    color: Color.colorGainsboro_100,
     textAlign: 'center',
     width: 237,
     fontFamily: FontFamily.interRegular,
@@ -108,7 +113,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   alreadyHadAccountContainer: {
-    left: 140,
+    left: 110,
     top: 680,
     position: 'absolute',
   },
