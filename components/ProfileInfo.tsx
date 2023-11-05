@@ -5,7 +5,7 @@ import {Color, FontSize, FontFamily} from '../GlobalStyles';
 const ProfileInfo = () => {
   return (
     <View style={styles.profileContainer}>
-      <Text style={styles.letsCrushIt}>Let’s Crush it, ANIKET 🔥</Text>
+      <Text style={styles.letsCrushIt}>Let’s Crush it, John Doe</Text>
       <Image
         style={styles.profileIcon}
         resizeMode="cover"
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     height: 45,
     marginTop: 20,
     marginBottom: 10,
-    marginLeft: 30,
+    marginLeft: 5,
   },
 });
 

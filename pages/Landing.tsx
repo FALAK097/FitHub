@@ -15,7 +15,7 @@ const Landing = () => {
         source={require('../assets/pxfuel-1.png')}
       />
       <Text style={[styles.unlockYourPotential, styles.loginTypo]}>
-        Unlock Your Potential, Unleash Your Power
+        Unlock Your Potential, {'\n'} Unleash Your Power
       </Text>
       <View style={styles.mainItem}>
         <Pressable
@@ -24,9 +24,9 @@ const Landing = () => {
           <Text style={[styles.getStarted, styles.loginTypo]}>GET STARTED</Text>
         </Pressable>
       </View>
-      <Text style={styles.fithub}>FITHUB</Text>
+      <Text style={styles.fithub}>FitHub</Text>
       <Text style={[styles.aiEnhancedSmart, styles.aiEnhancedSmartTypo]}>
-        AI enhanced smart vision for fitness optimization
+        AI Enhanced Smart Vision for Fitness Optimization
       </Text>
       <Pressable
         style={({pressed}) => [
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   loginBold: {
-    fontWeight: 'bold',  // Make LOGIN bold
+    fontWeight: 'bold', // Make LOGIN bold
     color: Color.colorYellow, // Change color to fithub color
   },
   imgpxfuel1Icon: {
@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
   },
   unlockYourPotential: {
     color: Color.colorWhite,
-    textAlign: 'left',
+    textAlign: 'center',
     fontSize: FontSize.size_lg,
     position: 'absolute',
-    top: 369,
-    left: 28,
+    top: 350,
+    left: 90,
   },
   mainItem: {
     top: 595,

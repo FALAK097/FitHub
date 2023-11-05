@@ -16,7 +16,7 @@ const Details = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
+      {/* <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}>Enter Age</Text>
         <TextInput
           style={styles.textInput}
@@ -41,6 +41,15 @@ const Details = () => {
           placeholder="60 kg"
           placeholderTextColor={Color.colorDimgray}
           keyboardType="numeric"
+        />
+      </View> */}
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>Enter Your Name</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="John Doe"
+          placeholderTextColor={Color.colorDimgray}
+          keyboardType="default"
         />
       </View>
       <View style={styles.inputContainer}>

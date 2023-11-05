@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, Pressable } from 'react-native';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import {View, Text, FlatList, Image, StyleSheet, Pressable} from 'react-native';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 // Sample workout details data
 const workoutDetailsData = [
@@ -31,12 +31,12 @@ const workoutDetailsData = [
   },
 ];
 
-const WorkoutPlan = () => {
+const DietPlan = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   // Function to navigate to a detailed page based on the ID
   const navigateToDetailPage = (itemId: string) => {
-    navigation.navigate('WorkoutDetails', { itemId });
+    navigation.navigate('WorkoutDetails', {itemId});
   };
 
   return (
@@ -46,8 +46,8 @@ const WorkoutPlan = () => {
         data={workoutDetailsData}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
           <Pressable onPress={() => navigateToDetailPage(item.id)}>
             <View style={styles.card}>
               <Image source={item.image} style={styles.image} />
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WorkoutPlan;
+export default DietPlan;

@@ -8,9 +8,9 @@ import {
   Text,
   ImageBackground, // Import ImageBackground
 } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation, ParamListBase } from '@react-navigation/native';
-import { Color, Border, FontFamily, FontSize } from '../GlobalStyles';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {Color, Border, FontFamily, FontSize} from '../GlobalStyles';
 
 const Login = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -18,8 +18,7 @@ const Login = () => {
   return (
     <ImageBackground
       source={require('../assets/pxfuel-1-1.png')} // Replace with the path to your background image
-      style={styles.backgroundImage}
-    >
+      style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.fithub}>FitHub</Text>
 
@@ -60,11 +59,11 @@ const Login = () => {
             resizeMode="cover"
             source={require('../assets/flatcoloriconsgoogle.png')}
           />
-          <Image
+          {/* <Image
             style={styles.logosgoogleGmailIcon}
             resizeMode="cover"
             source={require('../assets/logosgooglegmail.png')}
-          />
+          /> */}
         </View>
 
         <Pressable
@@ -158,11 +157,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 20,
   },
-  logosgoogleGmailIcon: {
-    width: 24,
-    height: 24,
-    marginLeft: 15,
-  },
+  // logosgoogleGmailIcon: {
+  //   width: 24,
+  //   height: 24,
+  //   marginLeft: 15,
+  // },
   flatColorIconsgoogle: {
     width: 30,
     height: 30,

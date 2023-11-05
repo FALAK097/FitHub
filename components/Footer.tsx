@@ -47,10 +47,8 @@ const Footer: React.FC<{navigation: any}> = ({navigation}) => {
           // To apply active footer styling --->
           // activeScreen === item.navigateTo && styles.activeIcon,
           onPress={() => {
-            console.log('Navigating to:', item.navigateTo);
             navigation.navigate(item.navigateTo);
             setActiveScreen(item.navigateTo);
-            console.log('Active screen:', activeScreen);
           }}>
           <Image style={styles.icon} resizeMode="cover" source={item.icon} />
         </Pressable>
