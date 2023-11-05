@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   StyleSheet,
+  ScrollView,
   GestureResponderEvent,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -165,7 +166,7 @@ const SmartCamera = () => {
           style={styles.machineName}
         />
         {machineInfo && (
-          <View style={styles.container}>
+          <ScrollView style={styles.container}>
             <Text style={styles.machineInfo}>{machineInfo.info}</Text>
             <Text style={styles.machineInfo}>{machineInfo.muscleGroup}</Text>
             <Text style={styles.machineInfo}>{machineInfo.beginnerReps}</Text>
@@ -181,7 +182,7 @@ const SmartCamera = () => {
                 resizeMode={FastImage.resizeMode.contain}
               />
             )}
-          </View>
+          </ScrollView>
         )}
       </View>
     </CommonLayout>
