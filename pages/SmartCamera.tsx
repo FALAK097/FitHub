@@ -14,6 +14,64 @@ import axios from 'axios';
 import CommonLayout from '../components/CommonLayout';
 import {useNavigation} from '@react-navigation/native';
 
+const machineInfoMapping: Record<
+  string,
+  {
+    info: string;
+    muscleGroup: string;
+    beginnerReps: string;
+    intermediateReps: string;
+    expertReps: string;
+    usageTips: string;
+    image: any;
+  }
+> = {
+  'chest-fly': {
+    info: 'Chest Fly Machine Information...\n',
+    muscleGroup: 'Muscle Group: Chest\n',
+    beginnerReps: 'Beginner Reps: 3 sets of 10-12 reps (weight 15kg-25kg)',
+    intermediateReps:
+      'Intermediate Reps: 3 sets of 12-15 reps (weight 15kg-25kg)',
+    expertReps: 'Expert Reps: 4 sets of 15-20 reps (above 45kg)\n',
+    usageTips:
+      'Usage Tips: Lie on a bench, keep a slight elbow bend, and perform a controlled, semi-circular motion with weights above your chest. Focus on chest engagement and controlled breathing.',
+    image: require('../assets/pec-deck-movement.gif'), // Use require to load the GIF
+  },
+  'chest-press': {
+    info: 'Chest Press Machine Information...\n',
+    muscleGroup: 'Muscle Group: Chest\n',
+    beginnerReps: 'Beginner Reps: 3 sets of 10-12 reps (weight 15kg-25kg)',
+    intermediateReps:
+      'Intermediate Reps: 3 sets of 12-15 reps (weight 40kg-60kg)',
+    expertReps: 'Expert Reps: 4 sets of 15-20 reps (above 50kg)\n',
+    usageTips:
+      'Usage Tips: Use a chest press machine by adjusting the seat and weight, gripping the handles with palms forward, and pushing the weight forward while exhaling. Ensure controlled movements and a full range of motion for an effective workout.',
+    image: require('../assets/chest-press-machine.gif'), // Use require to load the GIF
+  },
+  'lat-pull-down': {
+    info: 'Lat Pull-Down Machine Information...\n',
+    muscleGroup: 'Muscle Group: Back\n',
+    beginnerReps: 'Beginner Reps: 3 sets of 10-12 reps (weight 20kg-30kg)',
+    intermediateReps:
+      'Intermediate Reps: 3 sets of 12-15 reps (weight 40kg-60kg)',
+    expertReps: 'Expert Reps: 4 sets of 15-20 reps (above 60kg)\n',
+    usageTips:
+      'Usage Tips: Adjust the machine settings, push the weight up with extended legs, and lower it with bent knees. Avoid locking your knees and experiment with foot placement for muscle targeting.',
+    image: require('../assets/Lat-Pulldown.gif'), // Use require to load the GIF
+  },
+  'leg-press': {
+    info: 'Leg Press Machine Information...\n',
+    muscleGroup: 'Muscle Group: Legs\n',
+    beginnerReps: 'Beginner Reps: 3 sets of 10-12 reps (weight 30kg-40kg)',
+    intermediateReps:
+      'Intermediate Reps: 3 sets of 12-15 reps (weight 50kg-70kg)',
+    expertReps: 'Expert Reps: 4 sets of 15-20 reps (above 70kg)\n',
+    usageTips:
+      'Usage Tips: Sit with thigh pads secure, use a suitable grip, and pull the bar down to your chest, focusing on engaging your lats. Maintain an upright position.',
+    image: require('../assets/leg-press.gif'), // Use require to load the GIF
+  },
+};
+
 const SmartCamera = () => {
   const navigation = useNavigation();
   const [imageUri, setImageUri] = React.useState<string | null>(null);
