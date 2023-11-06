@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,10 +9,11 @@ import {
   GestureResponderEvent,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import FastImage from 'react-native-fast-image'; // Import FastImage
+import FastImage from 'react-native-fast-image';
 import axios from 'axios';
 import CommonLayout from '../components/CommonLayout';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+
 
 const machineInfoMapping: Record<
   string,
@@ -72,19 +73,26 @@ const machineInfoMapping: Record<
   },
 };
 
+const defaultImageSource = require('../assets/machine-default.jpg'); // Change the path to your default image
+
+
 const SmartCamera = () => {
   const navigation = useNavigation();
-  const [imageUri, setImageUri] = React.useState<string | null>(null);
-  const [className, setClassName] = React.useState('');
-  const [machineInfo, setMachineInfo] = React.useState<{
-    info: string;
-    muscleGroup: string;
-    beginnerReps: string;
-    intermediateReps: string;
-    expertReps: string;
-    usageTips: string;
-    image: any;
-  } | null>(null);
+  const [imageUri, setImageUri] = useState<string | null>(null);
+  const [className, setClassName] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [machineInfo, setMachineInfo] = useState<
+    | {
+        info: string;
+        muscleGroup: string;
+        beginnerReps: string;
+        intermediateReps: string;
+        expertReps: string;
+        usageTips: string;
+        image: any;
+      }
+    | null
+  >(null);
 
   const selectImage = () => {
     ImagePicker.openPicker({
@@ -115,7 +123,7 @@ const SmartCamera = () => {
 
       try {
         const response = await axios.post(
-          'http://10.2.0.2:5000/classify',
+          'http://192.168.0.100:5000//classify',
           formData,
           {
             headers: {
@@ -133,6 +141,19 @@ const SmartCamera = () => {
     }
   };
 
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    const machineName = query.toLowerCase(); // Convert search query to lowercase
+    if (machineInfoMapping[machineName]) {
+      setClassName(machineName);
+      setMachineInfo(machineInfoMapping[machineName]);
+    } else {
+      // Clear the class name and machine info if not found
+      setClassName('');
+      setMachineInfo(null);
+    }
+  };
+
   const renderCustomButton = (
     title:
       | string
@@ -142,7 +163,7 @@ const SmartCamera = () => {
       | Iterable<React.ReactNode>
       | null
       | undefined,
-    onPress: ((event: GestureResponderEvent) => void) | undefined,
+    onPress: ((event: GestureResponderEvent) => void) | undefined
   ) => (
     <TouchableOpacity style={styles.customButton} onPress={onPress}>
       <Text style={styles.customButtonText}>{title}</Text>
@@ -151,14 +172,35 @@ const SmartCamera = () => {
 
   return (
     <CommonLayout navigation={navigation}>
-      <View>
-        <Text style={styles.header}>Smart Camera</Text>
+    <View>
+      <Text style={styles.header}>Smart Camera</Text>
+     
+      <View style={styles.imageContainer}>
+        <Image
+          source={imageUri ? { uri: imageUri } : defaultImageSource}
+          style={styles.machineImage}
+        />
         {imageUri && (
-          <Image source={{uri: imageUri}} style={styles.machineImage} />
+          <FastImage
+            source={machineInfo?.image}
+            style={styles.machineImage}
+            resizeMode={FastImage.resizeMode.contain}
+          />
         )}
-        {renderCustomButton('Select Image', selectImage)}
-        {renderCustomButton('Upload Image', uploadImage)}
+      </View>
+      
+      {renderCustomButton('Select Image', selectImage)}
+      {renderCustomButton('Upload Image', uploadImage)}
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search for a machine"
+            placeholderTextColor="#000" // Set the placeholder text color to black
 
+            onChangeText={(text) => handleSearch(text)}
+            value={searchQuery}
+          />
+        </View>
         <TextInput
           value={className}
           editable={false}
@@ -169,18 +211,9 @@ const SmartCamera = () => {
             <Text style={styles.machineInfo}>{machineInfo.info}</Text>
             <Text style={styles.machineInfo}>{machineInfo.muscleGroup}</Text>
             <Text style={styles.machineInfo}>{machineInfo.beginnerReps}</Text>
-            <Text style={styles.machineInfo}>
-              {machineInfo.intermediateReps}
-            </Text>
+            <Text style={styles.machineInfo}>{machineInfo.intermediateReps}</Text>
             <Text style={styles.machineInfo}>{machineInfo.expertReps}</Text>
             <Text style={styles.machineInfo}>{machineInfo.usageTips}</Text>
-            {imageUri && (
-              <FastImage
-                source={machineInfo?.image}
-                style={styles.machineImage}
-                resizeMode={FastImage.resizeMode.contain}
-              />
-            )}
           </View>
         )}
       </View>
@@ -214,6 +247,9 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
+  imageContainer: {
+    flexDirection: 'row',
+  },
   customButton: {
     backgroundColor: '#545d90',
     padding: 10,
@@ -223,6 +259,16 @@ const styles = StyleSheet.create({
   customButtonText: {
     color: '#fff',
     textAlign: 'center',
+  },
+  searchContainer: {
+    margin: 10,
+  },
+  searchInput: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    color: '#000',
   },
 });
 
